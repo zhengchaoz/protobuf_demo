@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "cn.pojo";
+option java_outer_classname = "Importing";
+
+import "basic.proto";
+import "enum.proto";
+
+message ImportProto {
+
+  BasicProto basic = 9;
+  EnumProto enumProto = 10;
+
+}

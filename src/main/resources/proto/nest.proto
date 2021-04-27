@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "cn.pojo";
+option java_outer_classname = "Nest";
+
+message NestProto {
+
+  message Animal {
+    message Dog {
+      string name = 1;
+      int32 age = 2;
+    }
+  }
+
+  message Dinosaur {
+    double weight = 4;
+    string name = 5;
+  }
+
+  Animal.Dog dog = 6;
+  Dinosaur dinosaur = 7;
+
+}

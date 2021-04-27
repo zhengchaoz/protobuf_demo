@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "cn.pojo";
+option java_outer_classname = "Enum";
+
+message EnumProto {
+
+  enum Seasons {
+    SPRING = 0;
+    SUMMER = 1;
+    AUTUMN = 2;
+    WINTER = 3;
+  }
+
+  enum Weather {
+    RAIN = 0;
+    CLOUDY = 1;
+    SUNNY = 2;
+  }
+
+  Seasons seasons = 7;
+  Weather weather = 8;
+
+}

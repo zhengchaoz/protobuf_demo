@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>protobuf_demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <protobuf-java.version>3.5.1</protobuf-java.version>
+        <protobuf-javanano.version>3.1.0</protobuf-javanano.version>
+    </properties>
+
+    <dependencies>
+        <!--先添加依赖包，我们选择生成javanano格式的代码，当然你也可以选择生成grpc格式的代码，javanano是protobuf-maven-plugin原生支持的，所有支持的原生的代码格式：java,avanano,js,csharp,cpp,python,descriptor-set-->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf.nano</groupId>
+            <artifactId>protobuf-javanano</artifactId>
+            <version>${protobuf-javanano.version}</version>
+        </dependency>
+        <!-- 添加junit依赖 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+        </dependency>
+    </dependencies>
+
+    <!--添加protobuf-maven-plugin-->
+    <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.6.2</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>0.6.1</version>
+                <configuration>
+                    <pluginId>java</pluginId>
+                    <protocArtifact>com.google.protobuf:protoc:${protobuf-java.version}:exe:${os.detected.classifier}
+                    </protocArtifact>
+                    <!-- protoSourceRoot代表proto源文件所在目录 -->
+                    <protoSourceRoot>${project.basedir}/src/main/resources/proto</protoSourceRoot>
+                    <!-- outputDirectory代表生成的java文件的存放路径 -->
+                    <outputDirectory>${project.build.sourceDirectory}</outputDirectory>
+                    <clearOutputDirectory>false</clearOutputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- goal代表我们要用哪一个命令来生成java源文件 -->
+                            <goal>compile-javanano</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

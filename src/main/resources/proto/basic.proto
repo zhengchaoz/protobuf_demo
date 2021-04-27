@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_package = "cn.pojo";
+option java_outer_classname = "Basic";
+
+message BasicProto {
+  double money = 1;
+  float height = 2;
+  int32 age = 3;
+  int64 distance = 4;// long
+  bool sex = 5;// boolean
+  string name = 6;
+}
+
+
+
+//  .proto类型  Java类型  备注
+//  double      double
+//  float       float
+//  int32       int     使用可变长编码方式。编码负数时不够高效——如果你的字段可能含有负数，那么请使用sint32。
+//  int64       long    使用可变长编码方式。编码负数时不够高效——如果你的字段可能含有负数，那么请使用sint64。
+//  uint32      int[1]  Uses variable-length encoding.
+//  uint64      long[1] uint64	Uses variable-length encoding.
+//  sint32      int     使用可变长编码方式。有符号的整型值。编码时比通常的int32高效。
+//  sint64      long    使用可变长编码方式。有符号的整型值。编码时比通常的int64高效。
+//  fixed32     int[1]  总是4个字节。如果数值总是比总是比228大的话，这个类型会比uint32高效。
+//  fixed64     long[1] 总是8个字节。如果数值总是比总是比256大的话，这个类型会比uint64高效。
+//  sfixed32    int     总是4个字节。
+//  sfixed64    long    总是8个字节。
+//  bool        boolean
+//  string      String  一个字符串必须是UTF-8编码或者7-bit ASCII编码的文本。
+//  bytes       ByteString  可能包含任意顺序的字节数据。

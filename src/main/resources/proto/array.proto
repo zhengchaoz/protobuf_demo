@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "cn.pojo";
+option java_outer_classname = "Array";
+
+import "basic.proto";
+import "nest.proto";
+
+message ArrayProto {
+
+  repeated int32 ages = 1;
+  repeated string names = 2;
+
+  map<int32, string> student = 3;
+  map<string, BasicProto> basic = 4;
+
+  message Lists {// List类型
+    repeated NestProto.Dinosaur dinosaur = 5;
+  }
+
+  Lists list = 6;
+
+}
